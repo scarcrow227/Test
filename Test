@@ -1,0 +1,58 @@
+from music21 import stream, note, meter, key, instrument, tempo
+
+# Initialize the score
+score = stream.Score()
+
+# Set up the key signature, time signature, and tempo
+key_signature = key.KeySignature(-1)  # D minor
+time_signature = meter.TimeSignature('4/4')
+tempo_marking = tempo.MetronomeMark(number=120)
+
+# Set up the solo violin part
+solo_violin = stream.Part()
+solo_violin.append(instrument.Violin())
+solo_violin.append(key_signature)
+solo_violin.append(time_signature)
+solo_violin.append(tempo_marking)
+
+# Add notes for the solo violin (first section)
+solo_notes = [
+    'D4', 'E4', 'F4', 'G4', 'A4', 'G4', 'F4', 'E4', 'D4', 'E4', 'F4', 'G4', 'A4', 'F4', 'D4', 'C4',
+    'D4', 'E4', 'F4', 'G4', 'A4', 'G4', 'F4', 'E4', 'D4', 'E4', 'F4', 'G4', 'A4', 'F4', 'D4', 'C4',
+    'A3', 'C4', 'A3', 'C4', 'E4', 'D4', 'C4', 'B3', 'A3', 'C4', 'A3', 'C4', 'E4', 'D4', 'C4', 'B3',
+    'G4', 'A4', 'G4', 'F4', 'E4', 'D4', 'C4', 'B3', 'A3', 'C4', 'A3', 'C4', 'D4', 'E4', 'F4', 'G4',
+    'A4', 'F4', 'D4', 'C4', 'G4', 'F4', 'E4', 'D4', 'C4', 'B3', 'A3', 'G3', 'A4', 'F4', 'D4', 'C4'
+]
+
+# Add the notes to the solo violin part
+for pitch in solo_notes:
+    solo_violin.append(note.Note(pitch, quarterLength=1))
+
+# Add the solo violin part to the score
+score.append(solo_violin)
+
+# Set up the string orchestra part
+string_orchestra = stream.Part()
+string_orchestra.append(instrument.StringInstrument('Violin'))
+string_orchestra.append(key_signature)
+string_orchestra.append(time_signature)
+string_orchestra.append(tempo_marking)
+
+# Add notes for the string orchestra (first section, harmonized with solo violin)
+orchestra_notes = [
+    'D3', 'D4', 'D3', 'D4', 'A3', 'A4', 'A3', 'A4', 'D3', 'D4', 'D3', 'D4', 'A3', 'A4', 'A3', 'A4',
+    'D3', 'D4', 'D3', 'D4', 'A3', 'A4', 'A3', 'A4', 'D3', 'D4', 'D3', 'D4', 'A3', 'A4', 'A3', 'A4',
+    'A2', 'C3', 'A2', 'C3', 'E3', 'D3', 'C3', 'B2', 'A2', 'C3', 'A2', 'C3', 'E3', 'D3', 'C3', 'B2',
+    'G3', 'A3', 'G3', 'F3', 'E3', 'D3', 'C3', 'B2', 'A2', 'C3', 'A2', 'C3', 'D3', 'E3', 'F3', 'G3',
+    'A3', 'F3', 'D3', 'C3', 'G3', 'F3', 'E3', 'D3', 'C3', 'B2', 'A2', 'G2', 'A3', 'F3', 'D3', 'C3'
+]
+
+# Add the notes to the string orchestra part
+for pitch in orchestra_notes:
+    string_orchestra.append(note.Note(pitch, quarterLength=1))
+
+# Add the string orchestra part to the score
+score.append(string_orchestra)
+
+# Show the sheet music
+score.show()
